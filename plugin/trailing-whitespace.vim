@@ -23,7 +23,7 @@ autocmd ColorScheme * highlight default ExtraWhitespace ctermbg=darkred guibg=da
 autocmd BufRead,BufNew,FileType * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<![\u3000[:space:]]\+$/ | else | match ExtraWhitespace /^^/ | endif
 
 " Disable ExtraWhitespace highlighting in terminals
-autocmd BufWinEnter,WinEnter,BufEnter match ExtraWhitespace /^^/
+autocmd BufWinEnter,WinEnter,BufEnter term://* match ExtraWhitespace /^^/
 
 " The above flashes annoyingly while typing, be calmer in insert mode
 autocmd InsertLeave * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<![\u3000[:space:]]\+$/ | endif
