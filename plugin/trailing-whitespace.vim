@@ -10,7 +10,7 @@ function! ShouldMatchWhitespace()
     if &buftype ==# 'terminal'
         return 0
     endif
-    
+
     for ft in g:extra_whitespace_ignored_filetypes
         if ft ==# &filetype | return 0 | endif
     endfor
@@ -21,6 +21,9 @@ endfunction
 highlight default ExtraWhitespace ctermbg=darkred guibg=darkred
 autocmd ColorScheme * highlight default ExtraWhitespace ctermbg=darkred guibg=darkred
 autocmd BufRead,BufNew,FileType * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<![\u3000[:space:]]\+$/ | else | match ExtraWhitespace /^^/ | endif
+
+" Disable ExtraWhitespace highlighting in terminals
+autocmd BufWinEnter,WinEnter,BufEnter match ExtraWhitespace /^^/
 
 " The above flashes annoyingly while typing, be calmer in insert mode
 autocmd InsertLeave * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<![\u3000[:space:]]\+$/ | endif
