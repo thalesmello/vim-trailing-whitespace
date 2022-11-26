@@ -7,7 +7,7 @@ endif
 
 function! ShouldMatchWhitespace()
     " Ignore terminals
-    if if &buftype ==# 'terminal'
+    if &buftype ==# 'terminal'
         return 0
     endif
     
